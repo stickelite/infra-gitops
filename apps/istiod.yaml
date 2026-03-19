@@ -31,6 +31,12 @@ spec:
       jsonPointers:
         - /webhooks/0/clientConfig/caBundle
         - /webhooks/1/clientConfig/caBundle
+    - group: apps
+      kind: Deployment
+      name: istiod
+      jsonPointers:
+        - /spec/template/spec/volumes/0/downwardAPI/items/0/resourceFieldRef/divisor
+        - /spec/template/spec/volumes/0/downwardAPI/items/1/resourceFieldRef/divisor
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
