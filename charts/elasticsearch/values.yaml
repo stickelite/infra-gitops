@@ -1,0 +1,30 @@
+master:
+  replicaCount: 1
+  heapSize: 128m
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+data:
+  replicaCount: 0   # в dev режиме master выполняет роль data ноды
+
+coordinating:
+  replicaCount: 0
+
+ingest:
+  replicaCount: 0
+
+security:
+  enabled: false
+
+extraEnvVars:
+  - name: ES_JAVA_OPTS
+    value: "-Xms128m -Xmx128m"   # минимальный heap
+
+# Отключаем лишнее для dev
+sysctlImage:
+  enabled: false
