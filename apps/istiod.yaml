@@ -23,20 +23,21 @@ spec:
       kind: ValidatingWebhookConfiguration
       name: istio-validator-istio-system
       jsonPointers:
-        - /webhooks/0/failurePolicy
-        - /webhooks/0/clientConfig/caBundle
+        - /webhooks                        # ← игнорируем весь блок webhooks целиком
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
       name: istio-sidecar-injector
       jsonPointers:
-        - /webhooks/0/clientConfig/caBundle
-        - /webhooks/1/clientConfig/caBundle
+        - /webhooks
     - group: apps
       kind: Deployment
       name: istiod
       jsonPointers:
         - /spec/template/spec/volumes/0/downwardAPI/items/0/resourceFieldRef/divisor
         - /spec/template/spec/volumes/0/downwardAPI/items/1/resourceFieldRef/divisor
+      managedFieldsManagers:
+        - istiod
+        - istio-pilot
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
@@ -46,6 +47,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
       - RespectIgnoreDifferences=true
-
+      - ApplyOutOfSyncOnly=true

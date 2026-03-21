@@ -83,3 +83,11 @@ prometheus:
 
 prometheusRules:
   enabled: true
+
+nodeExporter:
+  enabled: true
+  hostRootfs: false
+
+prometheus-node-exporter:
+  hostRootFsMount:
+    enabled: false
