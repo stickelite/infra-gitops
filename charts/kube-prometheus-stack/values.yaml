@@ -34,3 +34,9 @@ nodeExporter:
 prometheus-node-exporter:
   hostRootFsMount:
     enabled: false
+
+grafana:
+  admin:
+    existingSecret: monitoring-grafana-credentials
+    userKey: admin-user
+    passwordKey: admin-password
