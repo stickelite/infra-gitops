@@ -13,10 +13,22 @@ spec:
         releaseName: monitoring
         valueFiles:
           - $values/charts/kube-prometheus-stack/values.yaml
-
     - repoURL: https://github.com/stickelite/infra-gitops
       targetRevision: main
       ref: values
+  ignoreDifferences:
+    - group: monitoring.coreos.com
+      kind: Prometheus
+      jsonPointers:
+        - /spec/enableOTLPReceiver
+    - group: monitoring.coreos.com
+      kind: Prometheus
+      jsonPointers:
+        - /spec/arbitraryFSAccessThroughSMs
+    - group: monitoring.coreos.com
+      kind: Alertmanager
+      jsonPointers:
+        - /spec/enableOTLPReceiver
 
   destination:
     server: https://kubernetes.default.svc
@@ -28,4 +40,5 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+      - RespectIgnoreDifferences=true
       

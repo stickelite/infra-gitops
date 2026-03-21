@@ -14,6 +14,12 @@ alertmanager:
       - name: templates
         mountPath: /etc/alertmanager/templates
 
+prometheusOperator:
+  admissionWebhooks:
+    enabled: false
+    patch:
+      enabled: false
+
 prometheus:
   prometheusSpec:
     ruleSelectorNilUsesHelmValues: false
