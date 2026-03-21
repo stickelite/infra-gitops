@@ -14,7 +14,7 @@ spec:
       helm:
         releaseName: istio-gateway
         valueFiles:
-          - $values/chart/istio/gateway/values.yaml
+          - $values/charts/istio/gateway/values.yaml
     - repoURL: https://github.com/stickelite/infra-gitops
       targetRevision: main
       ref: values
