@@ -13,13 +13,13 @@ spec:
     targetRevision: "2.*"
     helm:
       releaseName: eck-operator
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: elasticsearch-operator
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
-        - ServerSideApply=true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: elasticsearch-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
