@@ -8,27 +8,20 @@ spec:
   nodeSets:
     - name: default
       count: 1
-      config:
-        node.store.allow_mmap: false
-        podTemplate:
+      podTemplate:
         spec:
           containers:
             - name: elasticsearch
-              resources:
-                requests:
-                  cpu: 100m
-                  memory: 1Gi   # request == limit обязательно для ECK
-                limits:
-                  cpu: 500m
-                  memory: 1Gi
               env:
                 - name: ES_JAVA_OPTS
                   value: "-Xms512m -Xmx512m"
-          initContainers:
-            - name: sysctl
-              securityContext:
-                privileged: true
-              command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 1Gi
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
