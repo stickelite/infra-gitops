@@ -22,6 +22,15 @@ spec:
                 limits:
                   cpu: 500m
                   memory: 1Gi
+              readinessProbe:
+                exec:
+                  command:
+                    - bash
+                    - -c
+                    - curl -s http://localhost:9200/_cluster/health | grep -v '"status":"red"'
+                initialDelaySeconds: 30
+                periodSeconds: 10
+                failureThreshold: 6
           initContainers:
             - name: sysctl
               securityContext:
