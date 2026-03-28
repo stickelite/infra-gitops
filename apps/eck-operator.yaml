@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1aplha1
+kind: Application
+metadata:
+  name: eck-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    repoURL: https://helm.elastic.co
+    chart: eck-operator
+    targetRevision: "2.*"
+    helm:
+      releaseName: eck-operator
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: elasticsearch-operator
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
