@@ -33,6 +33,5 @@ spec:
   ignoreDifferences:
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
-      name: "*.argoproj.io"
       jsonPointers:
-      - '.'
+      - /preserveUnknownFields
