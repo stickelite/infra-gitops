@@ -35,4 +35,4 @@ spec:
       kind: CustomResourceDefinition
       name: "*.argoproj.io"
       jsonPointers:
-      - /preserveUnknownFields
+      - '.'
