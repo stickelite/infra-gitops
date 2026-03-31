@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-rollouts
-    targerRevision: main
+    targetRevision: main
     helm:
       releaseName: argo-rollouts
       values: |
