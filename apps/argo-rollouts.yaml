@@ -36,5 +36,3 @@ spec:
       name: "*.argoproj.io"
       jsonPointers:
       - /preserveUnknownFields
-      - /spec/versions/*/subresources
-      - /spec/versions/*/schema/openAPIV3Schema/properties/status
