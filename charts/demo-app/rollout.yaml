@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-app
+  namespace: demo-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+        version: stable
+    spec:
+      containers:
+        - name: app
+          image: demo-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodseconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+  strategy:
+    canary:
+      trafficRouting:
+        istio:
+          virtualService:
+            name: demo-app-vsvc
+            routes:
+              - primary
+          destinationRule:
+            name: demo-app-destrule
+            canarySubsetName: canary
+            stableSubsetName: stable
+      steps:
+        - setWeight: 10
+        - pause: {duration: 2m}
+        - setWeight: 30
+        - pause: {duration: 2m}
+        - setWeight: 50
+        - pause: {duration: 2m}
+        - setWeight: 100
