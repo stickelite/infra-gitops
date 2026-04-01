@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: demo-app-vsvc
+  namespace: demo-app
+spec:
+  hosts:
+    - demo-app
+  http:
+    - name: primary
+      route:
+        - destination:
+            host: demo-app
+            subset: stable
+          weight: 100
+        - destination:
+            host: demo-app
+            subset: canary
+          weight: 0
