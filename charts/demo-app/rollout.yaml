@@ -33,7 +33,7 @@ spec:
               path: /health
               port: 8080
             initialDelaySeconds: 30
-            periodseconds: 10
+            periodSeconds: 10
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
