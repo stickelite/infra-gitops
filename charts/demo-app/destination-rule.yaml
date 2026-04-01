@@ -5,11 +5,10 @@ metadata:
   namespace: demo-app
 spec:
   host: demo-app
-  subnets:
+  subsets:
     - name: stable
       labels:
         version: stable
     - name: canary
       labels:
         version: canary
-        
