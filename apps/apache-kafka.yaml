@@ -17,6 +17,10 @@ spec:
       values: |
         broker:
           replicaCount: 2
+        image:
+          registry: docker.io
+          repository: bitnamilegacy/kafka
+          tag: 4.0.0-debian-12-r10
   destination:
     server: https://kubernetes.default.svc
     namespace: apache-kafka
