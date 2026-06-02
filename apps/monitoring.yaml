@@ -31,6 +31,11 @@ spec:
       kind: Alertmanager
       jsonPointers:
         - /spec/enableOTLPReceiver
+    - group: ""
+      kind: Secret
+      name: kube-prometheus-stack-admission
+      jsonPointers:
+      - /data
 
   destination:
     server: https://kubernetes.default.svc
