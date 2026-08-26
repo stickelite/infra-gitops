@@ -1,3 +1,4 @@
 *-secret-raw.yaml
 *-backup.yaml
 /tmp/
+/apps/jenkins.yaml
