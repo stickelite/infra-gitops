@@ -8,11 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://helm.elastic.co
-    chart: eck-operator
-    targetRevision: "2.*"
-    helm:
-      releaseName: eck-operator
+    repoURL: https://github.com/stickelite/infra-gitops
+    targetRevision: main
+    path: charts/eck-operator
   destination:
     server: https://kubernetes.default.svc
     namespace: elasticsearch-operator
