@@ -13,7 +13,7 @@ spec:
     path: charts/elasticsearch
   destination:
     server: https://kubernetes.default.svc
-    namespace: logging
+    namespace: elasticsearch-operator
   syncPolicy:
     automated:
       prune: true
