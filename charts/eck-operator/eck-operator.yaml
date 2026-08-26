@@ -16,7 +16,7 @@ spec:
           tag: 3.5.0
   destination:
     server: https://kubernetes.default.svc
-    namespace: elastic-system
+    namespace: elasticsearch-operator
   syncPolicy:
     automated:
       prune: true
